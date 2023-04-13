@@ -1,0 +1,10 @@
+1	Miskolc Győri kapu 66	55	19000000
+2	Miskolc Bajcsy-Zsilinszky út 1	51	3000000
+3	Miskolc Felsőruzsin körút 21	55	15000000
+4	Miskolc Felsőruzsin körút 21	55	15000000
+5	Miskolc Középszer utca	34	54	15000000
+6	Miskolc Király utca 2	55	3000000
+7	Miskolc Bodótető 3	73	63000000
+8	Miskolc Bodótetői út 11	94	89000000
+9	Miskolc Vörösmarty Mihály utca 9	55	3000000
+10	Miskolc Vörösmarty Mihály utca 9	73	63000000
