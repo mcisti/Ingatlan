@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace _0413
 {
@@ -12,11 +14,33 @@ namespace _0413
         {
             Console.WriteLine("Kérem adja meg az ügyfél nevét");
             string nev = Console.ReadLine();
-
-
+            Console.WriteLine("Kérem adja meg az ügyfél telefonszámát");
+            string telefonszam = Console.ReadLine();
+            Console.WriteLine("Kérem adja meg az ügyfél azonosítóját");
+            string azonosito = Console.ReadLine();
+            StreamWriter ujAllomany = new StreamWriter("UjUgyfelek.txt");
+            ujAllomany.WriteLine($"{nev}\t{telefonszam}\t{azonosito}");
+            ujAllomany.Close();
+            Ugyfelek.Add($"{nev}\t{telefonszam}\t{azonosito}");
+            Console.WriteLine("Az ügyfél sikeresen hozzáadva!");
+            
         }
         static void UjIngatlan()
         {
+            Console.WriteLine("Kérem adja meg az ingatlan címét");
+            string cim = Console.ReadLine();
+            Console.WriteLine("Kérem adja meg az ingatlan árát");
+            int ar = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Kérem adja meg az ingatlan Tulajdonosának a nevét");
+            string tulajdonos = Console.ReadLine();
+            StreamWriter ujAllomany = new StreamWriter("UjIngatlanok.txt");
+            ujAllomany.WriteLine($"{cim}\t{ar}\t{tulajdonos}");
+            ujAllomany.Close();
+            ingatlanok.Add($"{cim}\t{ar}\t{tulajdonos}");
+            Console.WriteLine("Az ingatlan sikeresen hozzáadva!");
+
+
+
 
         }
         static void IngatlanTorles()
@@ -25,6 +49,7 @@ namespace _0413
         }
         static void Main(string[] args)
         {
+
             while (true)
             {
                 Console.WriteLine("\n Válasszon egy opciót");
@@ -53,9 +78,9 @@ namespace _0413
 
 
                 }
+                
+
             }
-            
-           
         }
     }
 }
