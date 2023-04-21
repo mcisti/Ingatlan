@@ -7,52 +7,68 @@ namespace _0413
 {
     class Program
     {
-        static List<string> Ugyfelek = new List<string>();
-        static List<string> ingatlanok = new List<string>();
+        struct Adatok
+        {
+            public int Azonosito;
+            public string IngatlanHelye;
+            public int IngatlanSzama;
+            public int Alapterulet;
+            public int IngatlanAra;
+        }
+        static List<Adatok> ugyfelek = new List<Adatok>();
+        static List<Adatok> ingatlanok = new List<Adatok>();
 
         static void UjUgyfel()
         {
-            Console.WriteLine("Kérem adja meg az ügyfél nevét");
+            Console.WriteLine("Kérem adja meg az ügyfél nevét:");
             string nev = Console.ReadLine();
-            Console.WriteLine("Kérem adja meg az ügyfél telefonszámát");
+            Console.WriteLine("Kérem adja meg az ügyfél telefonszámát:");
             string telefonszam = Console.ReadLine();
-            Console.WriteLine("Kérem adja meg az ügyfél azonosítóját");
-            string azonosito = Console.ReadLine();
-            StreamWriter ujAllomany = new StreamWriter("UjUgyfelek.txt");
+            Console.WriteLine("Kérem adja meg az ügyfél azonosítóját:");
+            int azonosito = Convert.ToInt32(Console.ReadLine());
+            StreamWriter ujAllomany = new StreamWriter("UjUgyfelek.txt", true);
             ujAllomany.WriteLine($"{nev}\t{telefonszam}\t{azonosito}");
             ujAllomany.Close();
-            Ugyfelek.Add($"{nev}\t{telefonszam}\t{azonosito}");
             Console.WriteLine("Az ügyfél sikeresen hozzáadva!");
-            
         }
+
         static void UjIngatlan()
         {
-            Console.WriteLine("Kérem adja meg az ingatlan címét");
+            Console.WriteLine("Kérem adja meg az ingatlan címét:");
             string cim = Console.ReadLine();
-            Console.WriteLine("Kérem adja meg az ingatlan árát");
+            Console.WriteLine("Kérem adja meg az ingatlan árát:");
             int ar = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Kérem adja meg az ingatlan Tulajdonosának a nevét");
+            Console.WriteLine("Kérem adja meg az ingatlan tulajdonosának a nevét:");
             string tulajdonos = Console.ReadLine();
-            StreamWriter ujAllomany = new StreamWriter("UjIngatlanok.txt");
-            ujAllomany.WriteLine($"{cim}\t{ar}\t{tulajdonos}");
+            Adatok ingatlan = new Adatok { IngatlanHelye = cim, IngatlanAra = ar, IngatlanSzama = ingatlanok.Count + 1 };
+            StreamWriter ujAllomany = new StreamWriter("UjIngatlanok.txt", true);
+            ujAllomany.WriteLine($"{ingatlan.IngatlanSzama}\t{cim}\t{ar}\t{tulajdonos}");
             ujAllomany.Close();
-            ingatlanok.Add($"{cim}\t{ar}\t{tulajdonos}");
+            ingatlanok.Add(ingatlan);
             Console.WriteLine("Az ingatlan sikeresen hozzáadva!");
-
-
-
-
         }
+
         static void IngatlanTorles()
         {
-
+            Console.WriteLine("Adja meg az ingatlan címét amit törölni fog:");
+            string cimek = Console.ReadLine();
+            for (int i = 0; i < ingatlanok.Count; i++)
+            {
+                if (ingatlanok[i].IngatlanHelye == cimek)
+                {
+                    ingatlanok.RemoveAt(i);
+                    Console.WriteLine("Az ingatlan sikeresen eltávolítva.");
+                    return;
+                }
+            }
+            Console.WriteLine("Az ingatlan nem található!");
         }
         static void Main(string[] args)
         {
 
             while (true)
             {
-                Console.WriteLine("\n Válasszon egy opciót");
+                Console.WriteLine(" Válasszon egy opciót");
                 Console.WriteLine("1. új ügyfél felvétele");
                 Console.WriteLine("2.Új ingatlan felvétele ");
                 Console.WriteLine("3.Leadott ingatlan törlése");
@@ -78,7 +94,7 @@ namespace _0413
 
 
                 }
-                
+
 
             }
         }
