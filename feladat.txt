@@ -1,0 +1,35 @@
+static void MeglevoAdatok()
+{
+    Console.WriteLine("Meglévő ügyfelek:");
+    Console.WriteLine("==================");
+    var rendezettUgyfelek = ugyfelek.OrderBy(x => x.Nev);
+    foreach (var ugyfel in rendezettUgyfelek)
+    {
+        Console.WriteLine($"{ugyfel.Nev}, {ugyfel.Telefonszam}, {ugyfel.Azonosito}");
+    }
+    Console.WriteLine("==================");
+    Console.WriteLine("Meglévő ingatlanok:");
+    Console.WriteLine("==================");
+    Console.WriteLine("Sorba rendezés (1: ár, 2: cím):");
+    int sorbaRendezes = Convert.ToInt32(Console.ReadLine());
+    if (sorbaRendezes == 1)
+    {
+        var rendezettIngatlanok = ingatlanok.OrderBy(x => x.IngatlanAra);
+        foreach (var ingatlan in rendezettIngatlanok)
+        {
+            Console.WriteLine($"{ingatlan.IngatlanHelye}, {ingatlan.IngatlanAra}");
+        }
+    }
+    else if (sorbaRendezes == 2)
+    {
+        var rendezettIngatlanok = ingatlanok.OrderBy(x => x.IngatlanHelye);
+        foreach (var ingatlan in rendezettIngatlanok)
+        {
+            Console.WriteLine($"{ingatlan.IngatlanHelye}, {ingatlan.IngatlanAra}");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Nincs ilyen opció!");
+    }
+}
